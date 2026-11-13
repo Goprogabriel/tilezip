@@ -97,6 +97,13 @@ function syncUI() {
   $('text-shadow').checked = state.shadow;
   $('font-style').value = state.font;
   $('text-size').value = state.textSize;
+  $('text-size-output').value = `${Math.round(state.textSize * 100)}%`;
+  $('custom-color').value = state.color;
+  $('export-description').textContent = {
+    png: 'Crisp detail with transparency. Best for graphics.',
+    jpg: 'Smaller files for photos. Transparent areas become white.',
+    webp: 'Compact images with transparency. For modern apps.',
+  }[state.format];
   $('quality').value = state.quality;
   $('quality-output').value = `${Math.round(state.quality * 100)}%`;
   $('quality-setting').hidden = state.format === 'png';
@@ -348,6 +355,7 @@ $('match-text').addEventListener('change', event => {
 });
 $('font-style').addEventListener('change', event => { state.font = event.target.value; changed(); });
 $('text-size').addEventListener('input', event => { state.textSize = Number(event.target.value); changed(); });
+$('custom-color').addEventListener('input', event => { state.color = event.target.value; changed(); });
 $('text-shadow').addEventListener('change', event => { state.shadow = event.target.checked; changed(); });
 $('quality').addEventListener('input', event => { state.quality = Number(event.target.value); changed({ redraw: false }); });
 for (const key of ['position', 'color', 'format']) {

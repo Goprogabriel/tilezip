@@ -276,3 +276,70 @@ button:active:not(:disabled) { transform: translateY(1px); }
   .preview-tabs button { font-size: 10px; padding: 6px; }
   .preview-tabs .icon { display: none; }
 }
+
+/* Studio settings: clear hierarchy, tactile controls, and visible choices. */
+.workspace { grid-template-columns: minmax(0, 1fr) 360px; gap: 32px; }
+.controls-panel { padding-left: 28px; overflow: visible; }
+.settings-heading { display: flex; align-items: center; justify-content: space-between; margin: 3px 0 26px; }
+.settings-kicker { color: var(--accent); font-size: 9px; letter-spacing: 1.8px; font-weight: 650; }
+.settings-heading h2 { margin: 7px 0 0; font-size: 24px; letter-spacing: -.8px; font-weight: 550; }
+.settings-heading > .icon { width: 34px; height: 34px; padding: 8px; color: var(--muted); background: #171e2a; border-radius: 9px; }
+.control-section { padding: 22px 0; }
+.source-section { padding-top: 0; }
+.section-title { margin-bottom: 16px; }
+.section-title h2 { font-size: 13px; font-weight: 600; gap: 10px; }
+.step-number { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: #bcff450b; border: 1px solid #bcff4522; border-radius: 6px; font-size: 9px; }
+.upload-button { height: 66px; border-radius: 10px; background: #151d29; font-size: 13px; }
+.upload-button > .icon { width: 32px; height: 32px; padding: 7px; border-radius: 7px; background: #bcff4510; }
+.upload-plus { color: var(--muted); }
+.stepper { height: 34px; border-radius: 8px; }
+.stepper button { width: 31px; height: 32px; }
+.stepper input { font-size: 12px; }
+.range-input { height: 5px; margin: 22px 0; }
+.range-input::-webkit-slider-thumb { width: 16px; height: 16px; }
+.count-presets { gap: 6px; }
+.count-presets button { height: 36px; border-radius: 7px; font-size: 11px; background: #111722; }
+.count-presets button[aria-pressed="true"] { background: #bcff4518; box-shadow: inset 0 0 0 1px #bcff4515; }
+.message-field { border-radius: 9px; }
+.message-field input { font-size: 13px; height: 49px; }
+.checkbox-row { font-size: 11px; line-height: 1.5; }
+.checkbox-row input { width: 14px; height: 14px; }
+.style-details { background: #10151e; border: 1px solid #263143; border-radius: 10px; padding: 12px; margin-top: 18px; }
+.style-details summary { font-size: 11px; color: #d6deeb; padding: 2px 0; }
+.style-content { gap: 17px; padding-top: 20px; }
+.setting-row { font-size: 11px; }
+.setting-row select { width: 170px; padding: 9px; font-size: 11px; border-radius: 7px; }
+.position-options button { font-size: 10px; padding: 7px 9px; }
+.color-options { align-items: center; gap: 13px; }
+.color-swatch { width: 20px; height: 20px; }
+.custom-color { position: relative; display: grid; place-items: center; width: 26px; height: 26px; border: 1px dashed #64718a; border-radius: 50%; cursor: pointer; }
+.custom-color input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }
+.custom-color:focus-within { outline: 2px solid var(--accent); outline-offset: 3px; }
+.custom-color span { font-size: 18px; color: var(--muted); pointer-events: none; }
+.small-range { width: 152px; margin: 7px 0; }
+#text-size-output { display: block; color: var(--muted); font: 9px monospace; margin-top: 4px; }
+.export-section { padding-top: 22px; }
+.format-options { display: flex; width: 100%; gap: 7px; }
+.format-options button { display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 10px; border: 1px solid #303b4c; border-radius: 8px; background: #111722; }
+.format-options button strong { font-size: 12px; font-weight: 600; }
+.format-options button span { font-size: 9px; color: var(--muted); }
+.format-options button[aria-pressed="true"] { background: #bcff4510; border-color: #8ebc40; }
+.export-description { color: var(--muted); font-size: 10px; line-height: 1.6; min-height: 32px; margin: 12px 0 0; }
+.quality-setting { font-size: 11px; }
+.primary-button { height: 54px; font-size: 13px; border-radius: 9px; }
+.download-area { padding-top: 14px; }
+.download-note { font-size: 9px; margin-top: 13px; }
+@media (max-width: 900px) {
+  .workspace { grid-template-columns: minmax(0, 1fr); }
+  .controls-panel { padding-left: 0; padding-top: 24px; }
+  .settings-heading { margin-bottom: 24px; }
+  .editor-fields { align-items: start; }
+}
+@media (max-width: 560px) {
+  .message-field input { font-size: 16px; }
+  .settings-heading h2 { font-size: 25px; }
+  .setting-row select { width: 170px; }
+}
+@media (min-width: 901px) {
+  .preview-panel { position: sticky; top: 24px; }
+}

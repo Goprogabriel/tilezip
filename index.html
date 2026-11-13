@@ -79,35 +79,36 @@
         </div>
 
         <form class="controls-panel" id="controls-form" aria-label="Image settings">
+          <div class="settings-heading"><div><span class="settings-kicker">MAKE IT YOURS</span><h2>Image studio</h2></div><svg class="icon"><use href="#i-sliders"></use></svg></div>
           <fieldset class="editor-fields" id="editor-fields" disabled>
             <legend class="sr-only">Image and slice settings</legend>
             <section class="control-section source-section">
-              <div class="section-title"><h2><span class="step-number">01</span>Your image</h2><span class="local-label"><svg class="icon"><use href="#i-lock"></use></svg>Stays here</span></div>
+              <div class="section-title"><h2><span class="step-number">01</span>Source image</h2><span class="local-label"><svg class="icon"><use href="#i-lock"></use></svg>Stays here</span></div>
               <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp,.jpg,.jpeg,.png,.webp" class="sr-only" tabindex="-1">
-              <button class="upload-button" id="upload-button" type="button"><svg class="icon"><use href="#i-upload"></use></svg><span>Choose an image</span><span class="upload-plus">+</span></button>
+              <button class="upload-button" id="upload-button" type="button"><svg class="icon"><use href="#i-upload"></use></svg><span>Choose an image</span><span class="upload-plus">↗</span></button>
               <div class="upload-meta"><span id="source-name" title="desert-study.jpg">Or drop one anywhere</span><span>JPG, PNG, WebP</span></div>
             </section>
 
             <section class="control-section">
-              <div class="section-title"><h2><span class="step-number">02</span>Slice it up</h2><div class="stepper"><button type="button" id="decrease-count" aria-label="Fewer slices"><svg class="icon"><use href="#i-minus"></use></svg></button><input id="slice-count" type="number" min="2" max="20" value="12" inputmode="numeric" aria-label="Number of slices"><button type="button" id="increase-count" aria-label="More slices"><svg class="icon"><use href="#i-plus"></use></svg></button></div></div>
+              <div class="section-title"><h2><span class="step-number">02</span>Split &amp; arrange</h2><div class="stepper"><button type="button" id="decrease-count" aria-label="Fewer slices"><svg class="icon"><use href="#i-minus"></use></svg></button><input id="slice-count" type="number" min="2" max="20" value="12" inputmode="numeric" aria-label="Number of slices"><button type="button" id="increase-count" aria-label="More slices"><svg class="icon"><use href="#i-plus"></use></svg></button></div></div>
               <input id="slice-range" class="range-input" type="range" min="2" max="20" value="12" aria-label="Number of image slices">
               <div class="count-presets" role="group" aria-label="Slice count presets"><button type="button" data-count="4" aria-pressed="false">4</button><button type="button" data-count="8" aria-pressed="false">8</button><button type="button" data-count="12" aria-pressed="true">12</button><button type="button" data-count="16" aria-pressed="false">16</button><button type="button" data-count="20" aria-pressed="false">20</button></div>
             </section>
 
             <section class="control-section text-section">
-              <div class="section-title"><h2><span class="step-number">03</span>Make it say something</h2><label class="switch" title="Add one character to each slice"><input type="checkbox" id="text-enabled" checked aria-label="Add text to slices"><span></span></label></div>
+              <div class="section-title"><h2><span class="step-number">03</span>Add your message</h2><label class="switch" title="Add one character to each slice"><input type="checkbox" id="text-enabled" checked aria-label="Add text to slices"><span></span></label></div>
               <div id="text-controls">
                 <div class="message-field"><input id="message-input" value="STAY CURIOUS" type="text" placeholder="YOUR NEXT BIG THING" maxlength="256" autocomplete="off" spellcheck="false" aria-label="Message, one character per slice" aria-describedby="message-help message-feedback" dir="auto"><span id="character-count" aria-live="polite">12/12</span></div>
                 <div class="message-helper" id="message-help">One character per slice. Spaces count.</div>
                 <label class="checkbox-row"><input type="checkbox" id="match-text" checked><span>Match slices to text</span></label>
                 <p class="message-feedback" id="message-feedback" role="status" hidden></p>
-                <details class="style-details" id="text-style-details">
+                <details class="style-details" id="text-style-details" open>
                   <summary><svg class="icon"><use href="#i-sliders"></use></svg>Text style<svg class="icon detail-chevron"><use href="#i-chevron"></use></svg></summary>
                   <div class="style-content">
                     <label class="setting-row" for="font-style"><span>Typeface</span><select id="font-style"><option value="editorial">Editorial serif</option><option value="bold">Bold sans</option><option value="mono">Monospace</option></select></label>
                     <div class="setting-row"><span id="position-label">Position</span><div class="segmented position-options" role="group" aria-labelledby="position-label"><button type="button" data-position="top" aria-pressed="true">Top</button><button type="button" data-position="middle" aria-pressed="false">Middle</button><button type="button" data-position="bottom" aria-pressed="false">Bottom</button></div></div>
-                    <div class="setting-row"><span id="color-label">Color</span><div class="color-options" role="group" aria-labelledby="color-label"><button type="button" class="color-swatch color-white" data-color="#ffffff" aria-label="White text" aria-pressed="true"></button><button type="button" class="color-swatch color-lime" data-color="#d7f59b" aria-label="Lime text" aria-pressed="false"></button><button type="button" class="color-swatch color-dark" data-color="#111214" aria-label="Dark text" aria-pressed="false"></button></div></div>
-                    <label class="setting-row" for="text-size"><span>Size</span><input type="range" id="text-size" min="0.4" max="1.2" step="0.05" value="0.85" class="range-input small-range"></label>
+                    <div class="setting-row"><span id="color-label">Color</span><div class="color-options" role="group" aria-labelledby="color-label"><button type="button" class="color-swatch color-white" data-color="#ffffff" aria-label="White text" aria-pressed="true"></button><button type="button" class="color-swatch color-lime" data-color="#d7f59b" aria-label="Lime text" aria-pressed="false"></button><button type="button" class="color-swatch color-dark" data-color="#111214" aria-label="Dark text" aria-pressed="false"></button><label class="custom-color" title="Choose any text color"><input type="color" id="custom-color" value="#ffffff" aria-label="Custom text color"><span>+</span></label></div></div>
+                    <label class="setting-row" for="text-size"><span>Size <output id="text-size-output" for="text-size">85%</output></span><input type="range" id="text-size" min="0.4" max="1.2" step="0.05" value="0.85" class="range-input small-range"></label>
                     <label class="checkbox-row"><input type="checkbox" id="text-shadow" checked><span>Soft text shadow</span></label>
                   </div>
                 </details>
@@ -115,14 +116,16 @@
             </section>
 
             <section class="export-section">
-              <div class="export-settings"><div class="format-options" role="group" aria-label="Export format"><button type="button" data-format="png" aria-pressed="true">PNG</button><button type="button" data-format="jpg" aria-pressed="false">JPG</button><button type="button" data-format="webp" aria-pressed="false">WebP</button></div><span class="resolution-label">Full resolution</span></div>
+              <div class="section-title"><h2><span class="step-number">04</span>Export</h2><span class="local-label">Full resolution</span></div>
+              <div class="export-settings"><div class="format-options" role="group" aria-label="Export format"><button type="button" data-format="png" aria-pressed="true"><strong>PNG</strong><span>Lossless</span></button><button type="button" data-format="jpg" aria-pressed="false"><strong>JPG</strong><span>Smaller files</span></button><button type="button" data-format="webp" aria-pressed="false"><strong>WebP</strong><span>Compact</span></button></div></div>
+              <p class="export-description" id="export-description">Crisp detail with transparency. Best for graphics.</p>
               <label class="quality-setting" id="quality-setting" for="quality" hidden><span>Quality</span><input type="range" min="0.5" max="1" step="0.01" value="0.94" id="quality" class="range-input"><output id="quality-output" for="quality">94%</output></label>
             </section>
           </fieldset>
           <div class="download-area">
             <button id="download-button" type="submit" class="primary-button" disabled><svg class="icon" id="download-icon"><use href="#i-download"></use></svg><span id="download-label">Download 12 images</span><span class="zip-label">.zip</span></button>
             <div class="export-progress" id="export-progress" hidden><progress id="progress-bar" max="100" value="0" aria-label="Export progress"></progress><button class="text-button" id="cancel-export" type="button">Cancel</button></div>
-            <p class="download-note" id="download-note">Numbered. In order. Ready to post.</p>
+            <p class="download-note" id="download-note">One ZIP · Numbered images · No watermark</p>
             <a class="download-again" id="download-again" hidden>ZIP ready — download again</a>
           </div>
         </form>
