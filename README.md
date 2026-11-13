@@ -22,16 +22,16 @@
 <p align="center"><sub>Free forever as open-source software · No accounts · No image uploads · Zero package dependencies</sub></p>
 
 <a href="https://goprogabriel.github.io/tilezip/">
-  <img src="docs/demo.gif" alt="Recorded TileZip demo: scroll through the image, change the message, and compare the original." width="100%">
+  <img src="docs/demo.gif" alt="TileZip studio demo: compare Overview and Original, edit the message, and switch to Carousel." width="100%">
 </a>
 
 <p align="center"><sub>A recording of the working app. Try it yourself at <a href="https://goprogabriel.github.io/tilezip/">goprogabriel.github.io/tilezip</a>.</sub></p>
 
 ## A carousel, not a grid
 
-TileZip cuts your image into **2–20 full-height vertical strips**, ordered from left to right. The live preview is a single horizontally scrollable row, with the same image proportions as your exported files.
+TileZip cuts your image into **2–20 full-height vertical strips**, ordered from left to right. Choose between three previews: a scrollable **Carousel**, an **Overview** of every slice, and the untouched **Original**.
 
-Drag with your mouse, swipe on your phone, use the arrows, or focus the preview and use your keyboard. Switch to **Original** to see where it all started.
+Drag with your mouse, swipe on your phone, use the arrows, or focus the preview and use your keyboard. **Overview** fits all slices side by side. Switch between **Overview** and **Original** to compare the result: both use the same image size and position, so nothing jumps.
 
 **Upload → choose your slices → add a message → download.**
 
@@ -55,9 +55,10 @@ Prefer to choose the number yourself? Pick a preset or use the slider. Shorter m
 | Feature | What you get |
 | :-- | :-- |
 | **Local image input** | Choose, drag and drop, or paste a JPG, PNG or WebP. |
-| **Real horizontal preview** | Original proportions, rounded preview corners, numbered strips and smooth navigation. |
+| **Three preview modes** | Scroll through Carousel, see every slice in Overview, or compare the Original at the same size and position. |
 | **One character per image** | Optional automatic slice matching, with spaces included. |
-| **Simple typography controls** | Serif, sans or monospace; top, middle or bottom; three colors, size and a soft shadow. |
+| **Image studio controls** | Clear source, slicing, message and export sections with larger buttons and a preview that stays visible on desktop. |
+| **Typography and custom colors** | Serif, sans or monospace; top, middle or bottom; preset or custom text colors, percentage size and a soft shadow. |
 | **Full-resolution export** | PNG, JPG or WebP, with quality controls for lossy formats. No resizing or watermark. |
 | **One clean ZIP** | `01.png`, `02.png`, … in reading order, with a meaningful archive filename. |
 | **No missing pixels** | Integer crop boundaries cover the entire image, including widths that do not divide evenly. |
@@ -67,7 +68,13 @@ Prefer to choose the number yourself? Pick a preset or use the slider. Shorter m
 <details>
 <summary><strong>See the full desktop interface</strong></summary>
 <br>
-<img src="docs/screenshot.png" alt="TileZip's desktop interface with a horizontal image preview and compact editing controls" width="100%">
+<img src="docs/screenshot.png" alt="TileZip’s current desktop interface with an open preview and Image studio settings" width="100%">
+</details>
+
+<details>
+<summary><strong>See all slices in Overview</strong></summary>
+<br>
+<img src="docs/overview.png" alt="Every slice visible side by side in Overview, with the Image studio settings" width="100%">
 </details>
 
 <details>
@@ -180,7 +187,7 @@ PNG preserves transparency. JPEG uses a white background for transparent pixels.
 
 Text uses locally available system fonts. Emoji appearance, glyph availability and minor typographic details can vary between devices. The character count remains Unicode-aware; the preview and export on the same device use the same renderer.
 
-The app targets modern desktop and mobile browsers with Canvas, ES modules and Blob downloads. A 38-check Chromium run and an 18-test Node suite were completed for this release; the exact scope and limitations are in [QA notes](docs/QA.md). Safari, Firefox and real mobile devices were not validated in that run. If a browser declines the automatic download, use the visible **ZIP ready — download again** link.
+The app targets modern desktop and mobile browsers with Canvas, ES modules and Blob downloads. The 18-test Node suite passes. The original release also completed a 38-check Chromium run; the exact scope and limitations are in [QA notes](docs/QA.md). Safari, Firefox and real mobile devices were not validated in that run. If a browser declines the automatic download, use the visible **ZIP ready — download again** link.
 
 **This is a horizontal carousel preview, not an official X renderer.** Social apps may crop, resize, compress or rearrange uploaded images. Their attachment limits and layouts can change. TileZip's 20-image maximum is a product setting, not a guarantee about another platform. Upload the extracted files in numeric filename order and check the destination's preview before posting.
 

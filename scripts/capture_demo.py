@@ -13,7 +13,7 @@ args=parser.parse_args()
 frames=[]; durations=[]
 with sync_playwright() as p:
     b=p.chromium.launch(executable_path=shutil.which('chromium') or shutil.which('google-chrome'),headless=True,args=['--no-sandbox'])
-    page=b.new_page(viewport={'width':1440,'height':1080},device_scale_factor=1)
+    page=b.new_page(viewport={'width':1440,'height':1320},device_scale_factor=1)
     if args.embedded: load_app(page,root)
     else:
         page.goto(args.url,wait_until='networkidle')
@@ -22,7 +22,7 @@ with sync_playwright() as p:
     page.mouse.move(1410,1050)
     page.screenshot(path=str(root/'docs/screenshot.png'),full_page=True)
     def frame(duration=120):
-        im=Image.open(BytesIO(page.screenshot(full_page=False))).convert('RGB').resize((1080,810),Image.Resampling.LANCZOS)
+        im=Image.open(BytesIO(page.screenshot(full_page=False))).convert('RGB').resize((1000,917),Image.Resampling.LANCZOS)
         frames.append(im);durations.append(duration)
     frame(1500)
     maximum=page.locator('#preview-scroller').evaluate('(e)=>e.scrollWidth-e.clientWidth')
@@ -39,10 +39,15 @@ with sync_playwright() as p:
         page.locator('#preview-scroller').evaluate('(e,x)=>e.scrollLeft=x',maximum*n/12)
         page.wait_for_timeout(40);frame(100)
     frame(1000)
+    page.locator('[data-view="overview"]').click()
+    page.mouse.move(1410,1050);page.wait_for_timeout(200);frame(1800)
+    page.screenshot(path=str(root/'docs/overview.png'),full_page=True)
     page.locator('[data-view="original"]').click()
     page.mouse.move(1410,1050);page.wait_for_timeout(200);frame(1400)
     page.locator('#reset-button').click()
     page.wait_for_timeout(500);page.mouse.move(1410,1050);frame(800)
+    desktop=Image.open(root/'docs/screenshot.png').convert('RGB')
+    desktop.crop((0,0,1440,756)).resize((1200,630),Image.Resampling.LANCZOS).save(root/'assets/social-card.png')
     page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(250)
     page.screenshot(path=str(root/'docs/mobile.png'),full_page=True)
     b.close()

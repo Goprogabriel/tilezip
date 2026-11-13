@@ -1,6 +1,12 @@
 # Release checks — TileZip 1.0.0
 
-These checks were run against the source included in this archive. The GitHub repository and live Pages site have not been created or deployed as part of packaging.
+The project is deployed at https://goprogabriel.github.io/tilezip/. The original release checks below are retained with their original scope.
+
+## UI refresh — 13 November 2026
+
+The current README screenshots and demo were captured from the actual local app after the UI refresh. They show the open editor, Image studio controls, custom text colors, descriptive export options and the Overview preview. Overview and Original were checked in the browser and use the same image position and dimensions. The Node suite (18 tests), source checks and static build pass. GitHub Pages deployments have also succeeded.
+
+The original 38-check browser run below predates this UI refresh; it has not been rerun in full for the refreshed controls.
 
 ## Automated core checks
 
@@ -34,7 +40,7 @@ The README demo is a recording of this actual interface, not a proposed design.
 
 ## Not covered
 
-No live GitHub Pages deployment, real X upload, Firefox, Safari, iOS device or Android device was validated. Mobile-sized Chromium layouts are not equivalent to testing physical phones. Browser-specific file pickers, memory limits and download restrictions may differ.
+The original run did not validate a live GitHub Pages deployment, real X upload, Firefox, Safari, iOS device or Android device. Mobile-sized Chromium layouts are not equivalent to testing physical phones. Browser-specific file pickers, memory limits and download restrictions may differ.
 
 PNG reconstruction was checked using an opaque, color-profile-free test image. Photos with embedded color profiles and partially transparent pixels pass through browser color management and canvas compositing; metadata and original encoded bytes are not preserved.
 
