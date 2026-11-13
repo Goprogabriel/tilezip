@@ -169,6 +169,7 @@ function renderPreview(resetScroll) {
     const figure = document.createElement('figure');
     figure.className = 'slice-item';
     figure.style.setProperty('--slice-ratio', String(slice.width / slice.height));
+    figure.style.setProperty('--slice-weight', String(slice.width));
     const canvas = renderSlice(image, slice, state, letters[slice.index] ?? '', previewHeight);
     const number = String(slice.index + 1).padStart(2, '0');
     const charDescription = state.textEnabled && letters[slice.index]
@@ -187,7 +188,18 @@ function renderPreview(resetScroll) {
   requestAnimationFrame(updateScrollUI);
 }
 
+function updateComparisonSize() {
+  if (!state.source) return;
+  const image = state.source.image;
+  const ratio = image.naturalWidth / image.naturalHeight;
+  const maxHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--preview-height'));
+  const width = Math.min($('preview-panel').clientWidth, maxHeight * ratio);
+  $('preview-stage').style.setProperty('--comparison-width', `${width}px`);
+  $('preview-stage').style.setProperty('--comparison-height', `${width / ratio}px`);
+}
+
 function updateScrollUI() {
+  updateComparisonSize();
   const maxScroll = scroller.scrollWidth - scroller.clientWidth;
   $('scroll-prev').disabled = scroller.scrollLeft <= 2;
   $('scroll-next').disabled = scroller.scrollLeft >= maxScroll - 2 || maxScroll < 2;
@@ -402,7 +414,7 @@ scroller.addEventListener('pointerup', stopDrag);
 scroller.addEventListener('pointercancel', stopDrag);
 scroller.addEventListener('lostpointercapture', stopDrag);
 scroller.addEventListener('dragstart', event => event.preventDefault());
-new ResizeObserver(() => requestAnimationFrame(updateScrollUI)).observe(scroller);
+new ResizeObserver(() => requestAnimationFrame(updateScrollUI)).observe($('preview-panel'));
 
 function isFileDrag(event) { return [...(event.dataTransfer?.types ?? [])].includes('Files'); }
 window.addEventListener('dragenter', event => {

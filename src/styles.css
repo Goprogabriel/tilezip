@@ -343,3 +343,11 @@ button:active:not(:disabled) { transform: translateY(1px); }
 @media (min-width: 901px) {
   .preview-panel { position: sticky; top: 24px; }
 }
+
+/* Overview and original share the exact same fitted image rectangle. */
+.preview-scroller.is-overview { padding: 0; height: calc(var(--comparison-height) + 22px); }
+.is-overview .slice-track { width: var(--comparison-width); min-width: 0; margin: 0 auto; gap: 0; }
+.is-overview .slice-item canvas { height: var(--comparison-height); border-radius: 0; outline: 1px solid var(--bg); outline-offset: -1px; }
+.is-overview .slice-item { flex-grow: var(--slice-weight); animation: none; }
+.original-view { height: calc(var(--comparison-height) + 22px); padding: 0 0 22px; align-items: flex-start; }
+.original-view img { display: block; width: var(--comparison-width); height: var(--comparison-height); max-height: none; border-radius: 0; }
