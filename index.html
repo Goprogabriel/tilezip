@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111214">
+  <meta name="description" content="Turn one image into a seamless horizontal carousel. Add one character per slice, preview the scroll, and download a numbered ZIP. Free, open source, and entirely local.">
+  <meta property="og:title" content="TileZip — One image. A whole new scroll.">
+  <meta property="og:description" content="Split your image. Spell something out. Download every slice in order. A free, private image tool.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://goprogabriel.github.io/tilezip/">
+  <meta property="og:image" content="https://goprogabriel.github.io/tilezip/assets/social-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="color-scheme" content="dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'none'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <link rel="canonical" href="https://goprogabriel.github.io/tilezip/">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./src/styles.css">
+  <title>TileZip — One image. A whole new scroll.</title>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="icon-definitions" aria-hidden="true">
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.2-4.3-2.2-6-2.7M15 22v-3.4c0-1 .1-1.5-.5-2 2.8-.3 5.8-1.4 5.8-6.2a4.8 4.8 0 0 0-1.3-3.3 4.5 4.5 0 0 0-.1-3.3s-1.1-.3-3.5 1.3a12.2 12.2 0 0 0-6.4 0C6.6 3.5 5.5 3.8 5.5 3.8a4.5 4.5 0 0 0-.1 3.3 4.8 4.8 0 0 0-1.3 3.3c0 4.8 3 5.9 5.8 6.2-.5.4-.7 1-.7 2V22"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="m3 17 5-5 4 4 4-6 5 7"/><circle cx="8" cy="8" r="1"/></symbol>
+    <symbol id="i-slices" viewBox="0 0 24 24"><rect x="2" y="4" width="5" height="16" rx="1.5"/><rect x="9.5" y="4" width="5" height="16" rx="1.5"/><rect x="17" y="4" width="5" height="16" rx="1.5"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 1 7M3 4v6h6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h5m6 0h5M4 17h9m6 0h1"/><circle cx="12" cy="7" r="3"/><circle cx="16" cy="17" r="3"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+  </svg>
+  <a class="skip-link" href="#editor">Skip to editor</a>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="TileZip home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Tile<span class="brand-light">Zip</span><span class="brand-dot">.</span></span>
+      </a>
+      <nav class="header-actions" aria-label="Project links">
+        <span class="open-source"><span class="status-dot"></span> Free &amp; open source</span>
+        <a class="github-link" data-repo-link href="https://github.com/Goprogabriel/tilezip" target="_blank" rel="noopener noreferrer">
+          <svg class="icon"><use href="#i-github"></use></svg><span>GitHub</span><svg class="icon external"><use href="#i-external"></use></svg>
+        </a>
+      </nav>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">A DIFFERENT WAY TO SHARE</p>
+          <h1 id="page-title">One image.<br><span>A whole new scroll.</span></h1>
+          <p class="intro-copy">Split it. Spell it out. Make them swipe.</p>
+        </div>
+        <div class="intro-aside" aria-hidden="true"><span class="mini-strips"><i></i><i></i><i></i><i></i><i></i></span><span>A little tool.<br>More possibilities.</span></div>
+      </section>
+
+      <section class="workspace" id="editor" aria-label="Image splitter">
+        <div class="preview-panel" aria-busy="true" id="preview-panel">
+          <div class="preview-header">
+            <h2><span class="status-dot"></span> Live preview <span class="demo-badge" id="demo-badge">DEMO</span></h2>
+            <div class="segmented preview-tabs" role="group" aria-label="Preview mode">
+              <button type="button" data-view="carousel" aria-pressed="true"><svg class="icon"><use href="#i-slices"></use></svg>Carousel</button>
+              <button type="button" data-view="original" aria-pressed="false"><svg class="icon"><use href="#i-image"></use></svg>Original</button>
+            </div>
+          </div>
+          <div class="preview-stage" id="preview-stage">
+            <div class="preview-scroller" id="preview-scroller" tabindex="0" role="region" aria-label="Image carousel. Drag, swipe, or use the left and right arrow keys to explore.">
+              <div class="slice-track" id="slice-track"></div>
+            </div>
+            <div class="original-view" id="original-view" hidden><img id="original-image" alt="Your original image before slicing" draggable="false"></div>
+            <div class="preview-loading" id="preview-loading"><span class="spinner"></span><span>Opening image…</span></div>
+            <button class="scroll-arrow scroll-prev" id="scroll-prev" aria-label="Scroll preview left" disabled><svg class="icon"><use href="#i-chevron"></use></svg></button>
+            <button class="scroll-arrow scroll-next" id="scroll-next" aria-label="Scroll preview right"><svg class="icon"><use href="#i-chevron"></use></svg></button>
+          </div>
+          <div class="preview-caption">
+            <span class="preview-hint" id="preview-hint"><svg class="icon"><use href="#i-arrow"></use></svg><span class="desktop-hint">Drag to explore</span><span class="mobile-hint">Swipe to explore</span></span>
+            <span class="frame-position" id="frame-position">01 — 12 <span>/ 12</span></span>
+          </div>
+          <div class="preview-footer">
+            <div class="image-details"><svg class="icon"><use href="#i-image"></use></svg><span id="image-dimensions">Loading demo</span><span class="detail-dot">·</span><span id="slice-summary">12 slices</span></div>
+            <button type="button" id="reset-button" class="text-button"><svg class="icon"><use href="#i-reset"></use></svg>Reset</button>
+          </div>
+        </div>
+
+        <form class="controls-panel" id="controls-form" aria-label="Image settings">
+          <fieldset class="editor-fields" id="editor-fields" disabled>
+            <legend class="sr-only">Image and slice settings</legend>
+            <section class="control-section source-section">
+              <div class="section-title"><h2><span class="step-number">01</span>Your image</h2><span class="local-label"><svg class="icon"><use href="#i-lock"></use></svg>Stays here</span></div>
+              <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp,.jpg,.jpeg,.png,.webp" class="sr-only" tabindex="-1">
+              <button class="upload-button" id="upload-button" type="button"><svg class="icon"><use href="#i-upload"></use></svg><span>Choose an image</span><span class="upload-plus">+</span></button>
+              <div class="upload-meta"><span id="source-name" title="desert-study.jpg">Or drop one anywhere</span><span>JPG, PNG, WebP</span></div>
+            </section>
+
+            <section class="control-section">
+              <div class="section-title"><h2><span class="step-number">02</span>Slice it up</h2><div class="stepper"><button type="button" id="decrease-count" aria-label="Fewer slices"><svg class="icon"><use href="#i-minus"></use></svg></button><input id="slice-count" type="number" min="2" max="20" value="12" inputmode="numeric" aria-label="Number of slices"><button type="button" id="increase-count" aria-label="More slices"><svg class="icon"><use href="#i-plus"></use></svg></button></div></div>
+              <input id="slice-range" class="range-input" type="range" min="2" max="20" value="12" aria-label="Number of image slices">
+              <div class="count-presets" role="group" aria-label="Slice count presets"><button type="button" data-count="4" aria-pressed="false">4</button><button type="button" data-count="8" aria-pressed="false">8</button><button type="button" data-count="12" aria-pressed="true">12</button><button type="button" data-count="16" aria-pressed="false">16</button><button type="button" data-count="20" aria-pressed="false">20</button></div>
+            </section>
+
+            <section class="control-section text-section">
+              <div class="section-title"><h2><span class="step-number">03</span>Make it say something</h2><label class="switch" title="Add one character to each slice"><input type="checkbox" id="text-enabled" checked aria-label="Add text to slices"><span></span></label></div>
+              <div id="text-controls">
+                <div class="message-field"><input id="message-input" value="STAY CURIOUS" type="text" placeholder="YOUR NEXT BIG THING" maxlength="256" autocomplete="off" spellcheck="false" aria-label="Message, one character per slice" aria-describedby="message-help message-feedback" dir="auto"><span id="character-count" aria-live="polite">12/12</span></div>
+                <div class="message-helper" id="message-help">One character per slice. Spaces count.</div>
+                <label class="checkbox-row"><input type="checkbox" id="match-text" checked><span>Match slices to text</span></label>
+                <p class="message-feedback" id="message-feedback" role="status" hidden></p>
+                <details class="style-details" id="text-style-details">
+                  <summary><svg class="icon"><use href="#i-sliders"></use></svg>Text style<svg class="icon detail-chevron"><use href="#i-chevron"></use></svg></summary>
+                  <div class="style-content">
+                    <label class="setting-row" for="font-style"><span>Typeface</span><select id="font-style"><option value="editorial">Editorial serif</option><option value="bold">Bold sans</option><option value="mono">Monospace</option></select></label>
+                    <div class="setting-row"><span id="position-label">Position</span><div class="segmented position-options" role="group" aria-labelledby="position-label"><button type="button" data-position="top" aria-pressed="true">Top</button><button type="button" data-position="middle" aria-pressed="false">Middle</button><button type="button" data-position="bottom" aria-pressed="false">Bottom</button></div></div>
+                    <div class="setting-row"><span id="color-label">Color</span><div class="color-options" role="group" aria-labelledby="color-label"><button type="button" class="color-swatch color-white" data-color="#ffffff" aria-label="White text" aria-pressed="true"></button><button type="button" class="color-swatch color-lime" data-color="#d7f59b" aria-label="Lime text" aria-pressed="false"></button><button type="button" class="color-swatch color-dark" data-color="#111214" aria-label="Dark text" aria-pressed="false"></button></div></div>
+                    <label class="setting-row" for="text-size"><span>Size</span><input type="range" id="text-size" min="0.4" max="1.2" step="0.05" value="0.85" class="range-input small-range"></label>
+                    <label class="checkbox-row"><input type="checkbox" id="text-shadow" checked><span>Soft text shadow</span></label>
+                  </div>
+                </details>
+              </div>
+            </section>
+
+            <section class="export-section">
+              <div class="export-settings"><div class="format-options" role="group" aria-label="Export format"><button type="button" data-format="png" aria-pressed="true">PNG</button><button type="button" data-format="jpg" aria-pressed="false">JPG</button><button type="button" data-format="webp" aria-pressed="false">WebP</button></div><span class="resolution-label">Full resolution</span></div>
+              <label class="quality-setting" id="quality-setting" for="quality" hidden><span>Quality</span><input type="range" min="0.5" max="1" step="0.01" value="0.94" id="quality" class="range-input"><output id="quality-output" for="quality">94%</output></label>
+            </section>
+          </fieldset>
+          <div class="download-area">
+            <button id="download-button" type="submit" class="primary-button" disabled><svg class="icon" id="download-icon"><use href="#i-download"></use></svg><span id="download-label">Download 12 images</span><span class="zip-label">.zip</span></button>
+            <div class="export-progress" id="export-progress" hidden><progress id="progress-bar" max="100" value="0" aria-label="Export progress"></progress><button class="text-button" id="cancel-export" type="button">Cancel</button></div>
+            <p class="download-note" id="download-note">Numbered. In order. Ready to post.</p>
+            <a class="download-again" id="download-again" hidden>ZIP ready — download again</a>
+          </div>
+        </form>
+      </section>
+      <div class="notice" id="notice" role="status" aria-live="polite" hidden><span id="notice-text"></span><button type="button" id="dismiss-notice" aria-label="Dismiss message"><svg class="icon"><use href="#i-close"></use></svg></button></div>
+      <p class="preview-disclaimer">Your slices, as a scroll. Social apps may display them differently.</p>
+    </main>
+    <footer class="site-footer"><span><svg class="icon"><use href="#i-lock"></use></svg>Made to be useful. Built to be private.</span><span><a data-repo-link data-repo-path="/blob/main/LICENSE" href="https://github.com/Goprogabriel/tilezip/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT licensed</a><span class="footer-divider">/</span><a href="https://github.com/Goprogabriel" target="_blank" rel="noopener noreferrer">By Gabriel Back <svg class="icon"><use href="#i-external"></use></svg></a></span></footer>
+  </div>
+  <div class="drop-overlay" id="drop-overlay" hidden><div><svg class="icon"><use href="#i-upload"></use></svg><h2>Drop it like it’s yours.</h2><p>One image. Endless possibilities.</p></div></div>
+  <noscript><div class="noscript">TileZip needs JavaScript to split images locally. Enable JavaScript to use the editor.</div></noscript>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>

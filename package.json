@@ -1,0 +1,20 @@
+{
+  "name": "tilezip",
+  "version": "1.0.0",
+  "private": true,
+  "description": "One image. A whole new scroll. A private, zero-dependency image slicer.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Gabriel Back",
+  "repository": { "type": "git", "url": "https://github.com/Goprogabriel/tilezip.git" },
+  "homepage": "https://goprogabriel.github.io/tilezip/",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs dist"
+  }
+}
