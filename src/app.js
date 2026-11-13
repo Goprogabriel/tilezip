@@ -123,7 +123,11 @@ function syncUI() {
     }
   }
   for (const input of document.querySelectorAll('.range-input')) fillRange(input);
-  scroller.hidden = state.view !== 'carousel';
+  scroller.hidden = state.view === 'original';
+  scroller.classList.toggle('is-overview', state.view === 'overview');
+  scroller.setAttribute('aria-label', state.view === 'overview'
+    ? 'All image slices side by side, scaled to fit.'
+    : 'Image carousel. Drag, swipe, or use the left and right arrow keys to explore.');
   $('original-view').hidden = state.view !== 'original';
   $('scroll-prev').hidden = state.view !== 'carousel';
   $('scroll-next').hidden = state.view !== 'carousel';
@@ -377,7 +381,7 @@ scroller.addEventListener('keydown', event => {
 });
 let drag;
 scroller.addEventListener('pointerdown', event => {
-  if (event.pointerType !== 'mouse' || event.button !== 0) return;
+  if (state.view !== 'carousel' || event.pointerType !== 'mouse' || event.button !== 0) return;
   drag = { x: event.clientX, scroll: scroller.scrollLeft };
   scroller.setPointerCapture(event.pointerId);
   scroller.classList.add('is-dragging');

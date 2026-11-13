@@ -263,3 +263,16 @@ button:active:not(:disabled) { transform: translateY(1px); }
   .preview-disclaimer { font-size: 9px; }
   :root { --preview-height: 360px; }
 }
+
+/* Fit every slice in one row while preserving each crop's proportions. */
+.preview-scroller.is-overview { overflow: hidden; cursor: default; }
+.is-overview .slice-track { width: 100%; min-width: 0; gap: clamp(2px, .5vw, 8px); }
+.is-overview .slice-item { flex: var(--slice-ratio) 1 0; width: 0; min-width: 0; }
+.is-overview .slice-item canvas { height: auto; aspect-ratio: var(--slice-ratio); border-radius: 3px; }
+.is-overview .slice-item figcaption { font-size: clamp(6px, .75vw, 9px); }
+@media (max-width: 560px) {
+  .preview-header { flex-wrap: wrap; height: auto; row-gap: 14px; }
+  .preview-tabs { margin-left: auto; }
+  .preview-tabs button { font-size: 10px; padding: 6px; }
+  .preview-tabs .icon { display: none; }
+}
