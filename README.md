@@ -48,6 +48,8 @@ Type `HELLO WORLD` and enable **Match slices to text**. You get 11 images: ten l
 
 Each character is rendered into its own exported image, not just placed over the preview. Spaces stay blank. Danish letters, composed accents and supported emoji are counted as visible characters rather than raw UTF-16 units.
 
+**Message placement:** choose **From first image** or **Centered**. Centered spreads unused slices around the message; if the spare count is odd, the extra blank slice goes on the right. Selecting Centered turns off automatic slice matching so you can choose extra slices. Preview and ZIP exports use the same placement.
+
 Prefer to choose the number yourself? Pick a preset or use the slider. Shorter messages leave the remaining strips blank. Longer messages are flagged and cannot be exported until they fit; text is never silently discarded.
 
 ## Small tool. Thoughtful details.
@@ -58,7 +60,7 @@ Prefer to choose the number yourself? Pick a preset or use the slider. Shorter m
 | **Three preview modes** | Scroll through Carousel, see every slice in Overview, or compare the Original at the same size and position. |
 | **One character per image** | Optional automatic slice matching, with spaces included. |
 | **Image studio controls** | Clear source, slicing, message and export sections with larger buttons and a preview that stays visible on desktop. |
-| **Typography and custom colors** | Serif, sans or monospace; top, middle or bottom; preset or custom text colors, percentage size and a soft shadow. |
+| **Typography and custom colors** | Eight local font styles, including italic, condensed and handwritten; top, middle or bottom; preset or custom text colors, percentage size and a soft shadow. |
 | **Full-resolution export** | PNG, JPG or WebP, with quality controls for lossy formats. No resizing or watermark. |
 | **One clean ZIP** | `01.png`, `02.png`, … in reading order, with a meaningful archive filename. |
 | **No missing pixels** | Integer crop boundaries cover the entire image, including widths that do not divide evenly. |
@@ -187,7 +189,7 @@ PNG preserves transparency. JPEG uses a white background for transparent pixels.
 
 Text uses locally available system fonts. Emoji appearance, glyph availability and minor typographic details can vary between devices. The character count remains Unicode-aware; the preview and export on the same device use the same renderer.
 
-The app targets modern desktop and mobile browsers with Canvas, ES modules and Blob downloads. The 18-test Node suite passes. The original release also completed a 38-check Chromium run; the exact scope and limitations are in [QA notes](docs/QA.md). Safari, Firefox and real mobile devices were not validated in that run. If a browser declines the automatic download, use the visible **ZIP ready — download again** link.
+The app targets modern desktop and mobile browsers with Canvas, ES modules and Blob downloads. The 19-test Node suite passes. The original release also completed a 38-check Chromium run; the exact scope and limitations are in [QA notes](docs/QA.md). Safari, Firefox and real mobile devices were not validated in that run. If a browser declines the automatic download, use the visible **ZIP ready — download again** link.
 
 **This is a horizontal carousel preview, not an official X renderer.** Social apps may crop, resize, compress or rearrange uploaded images. Their attachment limits and layouts can change. TileZip's 20-image maximum is a product setting, not a guarantee about another platform. Upload the extracted files in numeric filename order and check the destination's preview before posting.
 

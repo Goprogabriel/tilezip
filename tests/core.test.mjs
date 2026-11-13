@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { getSlices, tileFilename, archiveFilename } from '../src/lib/slices.js';
-import { characters, fallbackCharacters, normalizeMessage } from '../src/lib/text.js';
+import { characters, fallbackCharacters, normalizeMessage, textForSlices } from '../src/lib/text.js';
 import { crc32, createZip } from '../src/lib/zip.js';
 import { detectImageType, validateDimensions } from '../src/lib/image.js';
 
@@ -171,4 +171,14 @@ test('ZIP can be cancelled before or during processing', async () => {
   await assert.rejects(() => createZip([
     { name: '01.png', blob: new Blob(['a']) }, { name: '02.png', blob: new Blob(['b']) },
   ], { signal: active.signal, onProgress: () => active.abort() }), { name: 'AbortError' });
+});
+
+test('message placement preserves characters and balances blank slices', () => {
+  assert.deepEqual(textForSlices('HI', 6, 'start'), ['H', 'I']);
+  assert.deepEqual(textForSlices('HI', 6, 'center'), ['', '', 'H', 'I']);
+  assert.deepEqual(textForSlices('HI', 5, 'center'), ['', 'H', 'I']);
+  assert.deepEqual(textForSlices(' A ', 7, 'center'), ['', '', ' ', 'A', ' ']);
+  assert.deepEqual(textForSlices('👩‍👩‍👧‍👦Ø', 4, 'center'), ['', '👩‍👩‍👧‍👦', 'Ø']);
+  assert.deepEqual(textForSlices('LONG', 2, 'center'), ['L', 'O', 'N', 'G']);
+  assert.deepEqual(textForSlices('', 4, 'center'), ['', '']);
 });

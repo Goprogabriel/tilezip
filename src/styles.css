@@ -351,3 +351,9 @@ button:active:not(:disabled) { transform: translateY(1px); }
 .is-overview .slice-item { flex-grow: var(--slice-weight); animation: none; }
 .original-view { height: calc(var(--comparison-height) + 22px); padding: 0 0 22px; align-items: flex-start; }
 .original-view img { display: block; width: var(--comparison-width); height: var(--comparison-height); max-height: none; border-radius: 0; }
+
+.message-alignment { margin-top: 18px; }
+.message-alignment > span { display: block; color: #c2ccdc; font-size: 11px; margin-bottom: 9px; }
+.message-alignment .segmented { display: flex; }
+.message-alignment button { flex: 1; padding: 9px 6px; font-size: 11px; }
+.message-alignment p { font-size: 10px; color: var(--muted); line-height: 1.6; margin: 9px 0 0; }

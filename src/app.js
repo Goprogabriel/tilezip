@@ -1,6 +1,6 @@
 import { DEMO_URL, MAX_SLICES, MIN_SLICES, REPOSITORY } from './config.js';
 import { getSlices, tileFilename, archiveFilename } from './lib/slices.js';
-import { characters, normalizeMessage } from './lib/text.js';
+import { characters, normalizeMessage, textForSlices } from './lib/text.js';
 import { loadFile, loadDemo } from './lib/image.js';
 import { renderSlice, encodeCanvas, FORMATS } from './lib/render.js';
 import { createZip } from './lib/zip.js';
@@ -13,6 +13,7 @@ const state = {
   textEnabled: true,
   matchText: true,
   font: 'editorial',
+  alignment: 'start',
   position: 'top',
   color: '#ffffff',
   textSize: 0.85,
@@ -88,6 +89,9 @@ function syncUI() {
   $('text-enabled').checked = state.textEnabled;
   $('text-controls').hidden = !state.textEnabled;
   $('match-text').checked = state.matchText;
+  $('alignment-help').textContent = state.alignment === 'center'
+    ? 'Extra slices stay blank on either side. Choose more slices than characters to add space.'
+    : 'Your message starts on the first image. Extra slices stay blank at the end.';
   if ($('message-input').value !== state.text) $('message-input').value = state.text;
   $('character-count').textContent = `${letters.length}/${state.count}`;
   $('message-input').setAttribute('aria-invalid', String(Boolean(error)));
@@ -124,7 +128,7 @@ function syncUI() {
     button.setAttribute('aria-pressed', String(Number(button.dataset.count) === state.count));
     button.disabled = Number(button.dataset.count) > max;
   }
-  for (const key of ['position', 'color', 'format', 'view']) {
+  for (const key of ['position', 'color', 'format', 'view', 'alignment']) {
     for (const button of document.querySelectorAll(`[data-${key}]`)) {
       button.setAttribute('aria-pressed', String(button.dataset[key] === state[key]));
     }
@@ -160,7 +164,7 @@ function scheduleRender(resetScroll = false) {
 function renderPreview(resetScroll) {
   const image = state.source.image;
   const slices = getSlices(image.naturalWidth, image.naturalHeight, state.count);
-  const letters = characters(state.text);
+  const letters = textForSlices(state.text, state.count, state.alignment);
   const oldScroll = resetScroll ? 0 : scroller.scrollLeft;
   const fragment = document.createDocumentFragment();
   const previewHeight = Math.min(1000, parseFloat(getComputedStyle(document.documentElement)
@@ -248,7 +252,7 @@ async function replaceSource(file = null, reset = false) {
     if (reset) {
       Object.assign(state, {
         count: 12, text: 'STAY CURIOUS', textEnabled: true, matchText: true,
-        font: 'editorial', position: 'top', color: '#ffffff', textSize: 0.85,
+        font: 'editorial', alignment: 'start', position: 'top', color: '#ffffff', textSize: 0.85,
         shadow: true, format: 'png', quality: 0.94, view: 'carousel',
       });
       $('text-style-details').open = false;
@@ -275,7 +279,7 @@ async function exportImages() {
   const { signal } = exportController;
   const source = state.source;
   const settings = { ...state };
-  const letters = characters(settings.text);
+  const letters = textForSlices(settings.text, settings.count, settings.alignment);
   const slices = getSlices(source.image.naturalWidth, source.image.naturalHeight, settings.count);
   const entries = [];
   clearDownload();
@@ -367,6 +371,13 @@ $('match-text').addEventListener('change', event => {
 });
 $('font-style').addEventListener('change', event => { state.font = event.target.value; changed(); });
 $('text-size').addEventListener('input', event => { state.textSize = Number(event.target.value); changed(); });
+for (const button of document.querySelectorAll('[data-alignment]')) {
+  button.addEventListener('click', () => {
+    state.alignment = button.dataset.alignment;
+    if (state.alignment === 'center') state.matchText = false;
+    changed();
+  });
+}
 $('custom-color').addEventListener('input', event => { state.color = event.target.value; changed(); });
 $('text-shadow').addEventListener('change', event => { state.shadow = event.target.checked; changed(); });
 $('quality').addEventListener('input', event => { state.quality = Number(event.target.value); changed({ redraw: false }); });

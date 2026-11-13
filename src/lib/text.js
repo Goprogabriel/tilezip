@@ -31,3 +31,10 @@ export function fallbackCharacters(value) {
   }
   return result;
 }
+
+/** Place the complete message across slices, preserving intentional spaces. */
+export function textForSlices(value, count, alignment = 'start') {
+  const letters = characters(value);
+  const offset = alignment === 'center' ? Math.max(0, Math.floor((count - letters.length) / 2)) : 0;
+  return [...Array(offset).fill(''), ...letters];
+}

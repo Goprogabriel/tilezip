@@ -1,4 +1,9 @@
 export const FONT_STYLES = {
+  classic: { family: '"Times New Roman", Times, serif', weight: 700 },
+  italic: { family: 'Georgia, "Times New Roman", serif', weight: 400, style: 'italic' },
+  impact: { family: 'Impact, Haettenschweiler, "Arial Narrow", sans-serif', weight: 900 },
+  rounded: { family: '"Trebuchet MS", Verdana, sans-serif', weight: 700 },
+  handwritten: { family: '"Segoe Print", "Bradley Hand", "Comic Sans MS", cursive', weight: 400 },
   editorial: { family: 'Georgia, "Times New Roman", serif', weight: 400 },
   bold: { family: 'Arial, Helvetica, sans-serif', weight: 700 },
   mono: { family: '"Courier New", monospace', weight: 700 },
@@ -35,10 +40,10 @@ function drawCharacter(context, width, height, character, options) {
   const style = FONT_STYLES[options.font] ?? FONT_STYLES.editorial;
   const maxWidth = width * 0.84;
   let size = Math.min(width * options.textSize, height * 0.24);
-  context.font = `${style.weight} ${size}px ${style.family}`;
+  context.font = `${style.style ?? "normal"} ${style.weight} ${size}px ${style.family}`;
   const measured = context.measureText(character).width;
   if (measured > maxWidth) size *= maxWidth / measured;
-  context.font = `${style.weight} ${size}px ${style.family}`;
+  context.font = `${style.style ?? "normal"} ${style.weight} ${size}px ${style.family}`;
   context.textAlign = 'center';
   context.textBaseline = 'alphabetic';
   const metrics = context.measureText(character);
